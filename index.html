@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Galerie Photo Interactive Accessible</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        #imageDisplay {
+            width: 500px;
+            height: 300px;
+            margin: 20px auto;
+            border: 3px solid #333;
+            line-height: 300px;
+            background-color: white;
+            background-size: cover;
+            background-position: center;
+            font-size: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        figure {
+            margin: 10px;
+        }
+
+        img {
+            width: 150px;
+            height: 100px;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        img:focus {
+            border: 3px solid blue;
+            outline: none;
+        }
+    </style>
+
+    <script>
+        function upDate(previewPic) {
+            console.log("Mouse over / Focus triggered");
+            let imageDiv = document.getElementById("imageDisplay");
+            imageDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+            imageDiv.innerHTML = previewPic.alt;
+        }
+
+        function undo() {
+            console.log("Mouse leave / Blur triggered");
+            let imageDiv = document.getElementById("imageDisplay");
+            imageDiv.style.backgroundImage = "url('')";
+            imageDiv.innerHTML = "Survolez ou sélectionnez une image";
+        }
+
+        function addTabFocus() {
+            console.log("Page loaded - adding tabindex");
+
+            let images = document.querySelectorAll(".gallery img");
+
+            for (let i = 0; i < images.length; i++) {
+                images[i].setAttribute("tabindex", "0");
+            }
+        }
+    </script>
+</head>
+
+<body onload="addTabFocus()">
+
+<h1>Ma Galerie Photo Interactive</h1>
+
+<div id="imageDisplay">
+    Survolez ou sélectionnez une image
+</div>
+
+<div class="gallery">
+
+    <figure>
+        <img src="https://picsum.photos/id/1015/600/400" 
+             alt="Paysage de montagne avec lac" 
+             onmouseover="upDate(this)" 
+             onmouseleave="undo()" 
+             onfocus="upDate(this)" 
+             onblur="undo()">
+    </figure>
+
+    <figure>
+        <img src="https://picsum.photos/id/1016/600/400" 
+             alt="Forêt dense avec lumière du soleil" 
+             onmouseover="upDate(this)" 
+             onmouseleave="undo()" 
+             onfocus="upDate(this)" 
+             onblur="undo()">
+    </figure>
+
+    <figure>
+        <img src="https://picsum.photos/id/1018/600/400" 
+             alt="Plage tropicale avec sable blanc" 
+             onmouseover="upDate(this)" 
+             onmouseleave="undo()" 
+             onfocus="upDate(this)" 
+             onblur="undo()">
+    </figure>
+
+    <figure>
+        <img src="https://picsum.photos/id/1020/600/400" 
+             alt="Route dans le désert au coucher du soleil" 
+             onmouseover="upDate(this)" 
+             onmouseleave="undo()" 
+             onfocus="upDate(this)" 
+             onblur="undo()">
+    </figure>
+
+    <figure>
+        <img src="https://picsum.photos/id/1024/600/400" 
+             alt="Chien assis dans l'herbe verte" 
+             onmouseover="upDate(this)" 
+             onmouseleave="undo()" 
+             onfocus="upDate(this)" 
+             onblur="undo()">
+    </figure>
+
+    <figure>
+        <img src="https://picsum.photos/id/1035/600/400" 
+             alt="Pont suspendu dans la brume" 
+             onmouseover="upDate(this)" 
+             onmouseleave="undo()" 
+             onfocus="upDate(this)" 
+             onblur="undo()">
+    </figure>
+
+</div>
+
+</body>
+</html>
